@@ -85,7 +85,11 @@ app.post("/charge", (req, res) => {
         .then(() => {
             
             // send an email to the person
-            sendEmailPayment(req.body.name, req.body.email, req.body.amount);
+            (async() => {
+                console.log('1')
+                await sendEmailPayment(req.body.name, req.body.email, req.body.amount);
+                console.log('2')
+              })()
             res.render("/views/success.html")
         })
         .catch(err => { 
